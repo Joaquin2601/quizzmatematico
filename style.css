@@ -1,0 +1,363 @@
+/* ==========================================
+   STYLE.CSS — Quiz Matemático
+   Estilos básicos con Flexbox y colores suaves
+========================================== */
+
+
+/* --- CONFIGURACIÓN GENERAL --- */
+
+/* Usamos la fuente Poppins en toda la página */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #eef2f7;   /* fondo gris azulado suave */
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+
+  /* Centramos todo el contenido con Flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* --- PANTALLAS --- */
+
+/* Clase base para las tres pantallas */
+.pantalla {
+  width: 100%;
+  max-width: 600px;   /* no se hace muy ancha en computadora */
+}
+
+/* Esta clase oculta una pantalla */
+.oculto {
+  display: none;
+}
+
+
+/* --- TARJETA CENTRAL --- */
+
+/* La tarjeta blanca que contiene todo */
+.tarjeta {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+/* --- TEXTOS --- */
+
+.titulo {
+  font-size: 2rem;
+  color: #2d3a8c;      /* azul oscuro */
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.instruccion {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 28px;
+}
+
+
+/* --- LISTA DE TEMAS (pantalla de bienvenida) --- */
+
+.lista-temas {
+  list-style: none;         /* quitamos los puntos de la lista */
+  padding: 0;
+  margin: 0 0 20px 0;
+  text-align: left;
+  display: inline-block;    /* para que no ocupe todo el ancho */
+}
+
+.lista-temas li {
+  font-size: 0.95rem;
+  color: #444;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.lista-temas li:last-child {
+  border-bottom: none;
+}
+
+
+/* --- BARRA DE INFO (progreso y puntaje) --- */
+
+.barra-info {
+  display: flex;
+  justify-content: space-between;   /* uno a la izquierda, otro a la derecha */
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 600;
+}
+
+
+/* --- BARRA DE PROGRESO VISUAL --- */
+
+/* El fondo gris de la barra */
+.barra-progreso-fondo {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;     /* para que el relleno no se salga */
+}
+
+/* El relleno de color que crece con cada pregunta */
+.barra-progreso-relleno {
+  background-color: #4a6cf7;   /* azul */
+  height: 100%;
+  width: 0%;                   /* empieza en 0, se actualiza con JS */
+  border-radius: 10px;
+  transition: width 0.4s;      /* transición suave al crecer */
+}
+
+
+/* --- TEMA Y PREGUNTA --- */
+
+/* Etiqueta del tema (ej: "Polinomios") */
+.tema {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a6cf7;
+  margin-bottom: 8px;
+}
+
+/* El texto de la pregunta */
+.pregunta {
+  font-size: 1.1rem;
+  color: #222;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* La fórmula matemática destacada */
+.formula {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2d3a8c;
+  background-color: #f0f4ff;
+  border-left: 4px solid #4a6cf7;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+
+/* --- OPCIONES DE RESPUESTA --- */
+
+/* Contenedor de los 4 botones de opción */
+.opciones {
+  display: flex;
+  flex-direction: column;  /* botones apilados verticalmente */
+  gap: 10px;               /* espacio entre botones */
+  margin-bottom: 16px;
+}
+
+/* Cada botón de opción */
+.opcion {
+  background-color: #f7f9ff;
+  border: 2px solid #c8d4f8;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Efecto al pasar el mouse por encima */
+.opcion:hover {
+  background-color: #e8eeff;
+  border-color: #4a6cf7;
+}
+
+/* Estilo cuando la respuesta es CORRECTA */
+.opcion.correcta {
+  background-color: #d4f5e2;
+  border-color: #27ae60;
+  color: #1a7a42;
+  font-weight: 600;
+}
+
+/* Estilo cuando la respuesta es INCORRECTA */
+.opcion.incorrecta {
+  background-color: #fde8e8;
+  border-color: #e74c3c;
+  color: #a93226;
+  font-weight: 600;
+}
+
+/* Deshabilitamos el hover cuando ya se respondió */
+.opcion:disabled {
+  cursor: default;
+}
+
+.opcion:disabled:hover {
+  background-color: #f7f9ff;
+  border-color: #c8d4f8;
+}
+
+.opcion.correcta:disabled:hover {
+  background-color: #d4f5e2;
+  border-color: #27ae60;
+}
+
+.opcion.incorrecta:disabled:hover {
+  background-color: #fde8e8;
+  border-color: #e74c3c;
+}
+
+
+/* --- MENSAJE DE RESPUESTA --- */
+
+.mensaje {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+/* Clase para mensaje correcto (verde) */
+.mensaje.correcto {
+  background-color: #d4f5e2;
+  color: #1a7a42;
+}
+
+/* Clase para mensaje incorrecto (rojo) */
+.mensaje.incorrecto {
+  background-color: #fde8e8;
+  color: #a93226;
+}
+
+
+/* --- BOTONES GENERALES --- */
+
+/* Estilo base de todos los botones principales */
+.boton {
+  display: inline-block;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 50px;      /* bordes muy redondeados */
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Efecto al hacer clic (se encoge un poco) */
+.boton:active {
+  transform: scale(0.97);
+}
+
+/* Botón azul principal */
+.boton-principal {
+  background-color: #4a6cf7;
+  color: white;
+}
+
+.boton-principal:hover {
+  background-color: #3558e8;
+}
+
+/* Botón gris secundario */
+.boton-secundario {
+  background-color: #6c757d;
+  color: white;
+  margin-top: 4px;
+}
+
+.boton-secundario:hover {
+  background-color: #565e64;
+}
+
+
+/* --- PANTALLA DE RESULTADO --- */
+
+/* Emoji grande de resultado */
+.emoji-grande {
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+/* Caja con el puntaje final */
+.puntaje-final {
+  display: inline-block;
+  background-color: #f0f4ff;
+  border: 3px solid #4a6cf7;
+  border-radius: 16px;
+  padding: 16px 40px;
+  margin: 20px 0 28px 0;
+}
+
+/* El número grande del puntaje */
+.puntaje-final span:first-child {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2d3a8c;
+}
+
+/* El texto "/ 10" */
+.puntaje-texto {
+  font-size: 1.5rem;
+  color: #888;
+  margin-left: 6px;
+}
+
+
+/* ==========================================
+   RESPONSIVE — Para celulares (pantallas
+   menores a 480px de ancho)
+========================================== */
+@media (max-width: 480px) {
+
+  body {
+    padding: 12px;
+    align-items: flex-start;   /* en celular pegamos al tope */
+    padding-top: 20px;
+  }
+
+  .tarjeta {
+    padding: 24px 18px;
+  }
+
+  .titulo {
+    font-size: 1.6rem;
+  }
+
+  .pregunta {
+    font-size: 1rem;
+  }
+
+  .formula {
+    font-size: 1.1rem;
+  }
+
+  .boton {
+    width: 100%;               /* botones de ancho completo en celular */
+    padding: 13px;
+  }
+
+  .puntaje-final span:first-child {
+    font-size: 2.5rem;
+  }
+}

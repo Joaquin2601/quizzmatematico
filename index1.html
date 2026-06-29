@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Matemático</title>
+
+  <!-- Enlazamos la hoja de estilos -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fuente de Google (solo para los títulos) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========================================
+       PANTALLA 1: BIENVENIDA
+       Se muestra al inicio del juego
+  ======================================== -->
+  <div id="pantalla-bienvenida" class="pantalla">
+
+    <div class="tarjeta">
+      <h1 class="titulo">🧮 Quiz Matemático</h1>
+      <p class="subtitulo">Pon a prueba tus conocimientos de:</p>
+
+      <!-- Lista de temas del quiz -->
+      <ul class="lista-temas">
+        <li>📌 Ecuaciones e Inecuaciones</li>
+        <li>📌 Polinomios</li>
+        <li>📌 Factorización</li>
+      </ul>
+
+      <p class="instruccion">10 preguntas · 1 intento por pregunta</p>
+
+      <!-- Botón para comenzar el juego -->
+      <button id="btn-comenzar" class="boton boton-principal">
+        ▶ Comenzar
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       PANTALLA 2: PREGUNTA
+       Se muestra durante el juego
+  ======================================== -->
+  <div id="pantalla-pregunta" class="pantalla oculto">
+
+    <div class="tarjeta">
+
+      <!-- Barra de info: progreso y puntaje -->
+      <div class="barra-info">
+        <span id="texto-progreso">Pregunta 1 de 10</span>
+        <span id="texto-puntaje">✅ Puntaje: 0</span>
+      </div>
+
+      <!-- Barra de progreso visual -->
+      <div class="barra-progreso-fondo">
+        <div id="barra-progreso" class="barra-progreso-relleno"></div>
+      </div>
+
+      <!-- Etiqueta del tema -->
+      <p id="tema-pregunta" class="tema"></p>
+
+      <!-- Texto de la pregunta -->
+      <h2 id="texto-pregunta" class="pregunta"></h2>
+
+      <!-- Fórmula matemática (si hay) -->
+      <p id="formula-pregunta" class="formula"></p>
+
+      <!-- Botones de opciones (se crean con JavaScript) -->
+      <div id="contenedor-opciones" class="opciones"></div>
+
+      <!-- Mensaje de correcto o incorrecto -->
+      <p id="mensaje-respuesta" class="mensaje oculto"></p>
+
+      <!-- Botón para la siguiente pregunta -->
+      <button id="btn-siguiente" class="boton boton-secundario oculto">
+        Siguiente →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================
+       PANTALLA 3: RESULTADO FINAL
+       Se muestra al terminar el juego
+  ======================================== -->
+  <div id="pantalla-resultado" class="pantalla oculto">
+
+    <div class="tarjeta">
+
+      <div id="emoji-resultado" class="emoji-grande"></div>
+      <h2 id="titulo-resultado" class="titulo"></h2>
+      <p id="detalle-resultado" class="subtitulo"></p>
+
+      <!-- Puntaje final grande -->
+      <div class="puntaje-final">
+        <span id="puntaje-numero">0</span>
+        <span class="puntaje-texto">/ 10</span>
+      </div>
+
+      <!-- Botón para volver a jugar -->
+      <button id="btn-reiniciar" class="boton boton-principal">
+        🔄 Jugar nuevamente
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Enlazamos el archivo JavaScript al final del body -->
+  <script src="script.js"></script>
+
+</body>
+</html>
